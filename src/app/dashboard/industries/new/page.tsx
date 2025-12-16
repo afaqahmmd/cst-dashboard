@@ -97,10 +97,7 @@ export default function AddIndustryPage() {
   const [isCheckingSlug, setIsCheckingSlug] = useState(false);
   const [slugAvailable, setSlugAvailable] = useState<boolean | null>(null);
 
-  // Stats fields
-  const [projectsCount, setProjectsCount] = useState(0);
-  const [reviewsCount, setReviewsCount] = useState(0);
-  const [industriesCount, setIndustriesCount] = useState(0);
+  // ...removed stats fields: projectsCount, reviewsCount, industriesCount
 
   // Hero image state
   const [heroImageFile, setHeroImageFile] = useState<File | null>(null);
@@ -243,9 +240,6 @@ export default function AddIndustryPage() {
       metaDescription,
       isPublished,
       selectedTags,
-      projectsCount,
-      reviewsCount,
-      industriesCount,
       projectsStatsSection,
       challengeSection,
       expertiseSection,
@@ -256,7 +250,7 @@ export default function AddIndustryPage() {
     localStorage.setItem("industryDraft", JSON.stringify(draftData));
     setIsDraftSaved(true);
     setLastSaved(new Date());
-  }, [title, description, slug, metaTitle, metaDescription, isPublished, selectedTags, projectsCount, reviewsCount, industriesCount, projectsStatsSection, challengeSection, expertiseSection, whatSetsUsApartSection, weBuildSection]);
+  }, [title, description, slug, metaTitle, metaDescription, isPublished, selectedTags,  projectsStatsSection, challengeSection, expertiseSection, whatSetsUsApartSection, weBuildSection]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -266,7 +260,7 @@ export default function AddIndustryPage() {
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, [title, description, slug, metaTitle, metaDescription, isPublished, selectedTags, projectsCount, reviewsCount, industriesCount, projectsStatsSection, challengeSection, expertiseSection, whatSetsUsApartSection, weBuildSection, saveDraft]);
+  }, [title, description, slug, metaTitle, metaDescription, isPublished, selectedTags, projectsStatsSection, challengeSection, expertiseSection, whatSetsUsApartSection, weBuildSection, saveDraft]);
 
   // Load draft on component mount
   useEffect(() => {
@@ -281,9 +275,6 @@ export default function AddIndustryPage() {
         setMetaDescription(draftData.metaDescription || "");
         setIsPublished(draftData.isPublished ?? true);
         setSelectedTags(draftData.selectedTags || []);
-        setProjectsCount(draftData.projectsCount || 0);
-        setReviewsCount(draftData.reviewsCount || 0);
-        setIndustriesCount(draftData.industriesCount || 0);
         setProjectsStatsSection(draftData.projectsStatsSection || []);
         setChallengeSection(draftData.challengeSection || { title: "", items: [] });
         setExpertiseSection(draftData.expertiseSection || { title: "", description: "", sub_sections: [] });
@@ -620,10 +611,7 @@ export default function AddIndustryPage() {
         meta_description: metaDescription,
         is_published: isPublished,
 
-        // Stats
-        projects_count: projectsCount,
-        reviews_count: reviewsCount,
-        industries_count: industriesCount,
+        // ...removed stats fields from API payload
 
         // Tags (array of IDs)
         tags: selectedTags,
@@ -913,48 +901,6 @@ export default function AddIndustryPage() {
                     <p className={`text-sm ${errors.metaDescription ? 'text-red-600' : 'text-muted-foreground'}`}>
                       {errors.metaDescription || `${160 - metaDescription.length} characters remaining`}
                     </p>
-                  </div>
-                </div>
-
-                {/* Stats Fields */}
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="projectsCount">Projects Count</Label>
-                    <Input
-                      id="projectsCount"
-                      type="number"
-                      min="0"
-                      value={projectsCount}
-                      onChange={(e) => setProjectsCount(Number(e.target.value))}
-                      placeholder="0"
-                    />
-                    <p className="text-sm text-muted-foreground">Number of projects delivered</p>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="reviewsCount">Reviews Count</Label>
-                    <Input
-                      id="reviewsCount"
-                      type="number"
-                      min="0"
-                      value={reviewsCount}
-                      onChange={(e) => setReviewsCount(Number(e.target.value))}
-                      placeholder="0"
-                    />
-                    <p className="text-sm text-muted-foreground">Number of client reviews</p>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="industriesCount">Industries Count</Label>
-                    <Input
-                      id="industriesCount"
-                      type="number"
-                      min="0"
-                      value={industriesCount}
-                      onChange={(e) => setIndustriesCount(Number(e.target.value))}
-                      placeholder="0"
-                    />
-                    <p className="text-sm text-muted-foreground">Number of industries served</p>
                   </div>
                 </div>
 

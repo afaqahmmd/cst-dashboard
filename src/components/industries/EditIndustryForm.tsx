@@ -90,10 +90,7 @@ export function EditIndustryForm({ industry, onCancel, onSaved }: EditIndustryFo
   const [isCheckingSlug, setIsCheckingSlug] = useState(false);
   const [slugAvailable, setSlugAvailable] = useState<boolean | null>(null);
 
-  // Stats fields
-  const [projectsCount, setProjectsCount] = useState(0);
-  const [reviewsCount, setReviewsCount] = useState(0);
-  const [industriesCount, setIndustriesCount] = useState(0);
+  // ...removed stats fields: projectsCount, reviewsCount, industriesCount
 
   // Hero image state (now an object with id, image, alt_text)
   const [existingHeroImage, setExistingHeroImage] = useState<{ id: number; image: string; alt_text: string } | null>(null);
@@ -250,10 +247,7 @@ export function EditIndustryForm({ industry, onCancel, onSaved }: EditIndustryFo
         setSelectedTags([]);
       }
 
-      // Stats
-      setProjectsCount(industry.projects_count || 0);
-      setReviewsCount(industry.reviews_count || 0);
-      setIndustriesCount(industry.industries_count || 0);
+      // ...removed stats fields from draft load
 
       // Hero image (now an object)
       if (industry.hero_image) {
@@ -603,10 +597,7 @@ export function EditIndustryForm({ industry, onCancel, onSaved }: EditIndustryFo
         meta_description: metaDescription,
         is_published: isPublished,
 
-        // Stats
-        projects_count: projectsCount,
-        reviews_count: reviewsCount,
-        industries_count: industriesCount,
+        // ...removed stats fields from API payload
 
         // Tags (array of strings)
         tags: selectedTags,
@@ -861,50 +852,7 @@ export function EditIndustryForm({ industry, onCancel, onSaved }: EditIndustryFo
             </div>
           </div>
 
-          {/* Stats Fields */}
-          <div className="grid grid-cols-3 gap-4">
-            <div className="space-y-2">
-              <label htmlFor="projectsCount" className="text-sm font-medium">Projects Count</label>
-              <input
-                id="projectsCount"
-                type="number"
-                min="0"
-                value={projectsCount}
-                onChange={(e) => setProjectsCount(Number(e.target.value))}
-                placeholder="0"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <p className="text-sm text-gray-500">Number of projects delivered</p>
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="reviewsCount" className="text-sm font-medium">Reviews Count</label>
-              <input
-                id="reviewsCount"
-                type="number"
-                min="0"
-                value={reviewsCount}
-                onChange={(e) => setReviewsCount(Number(e.target.value))}
-                placeholder="0"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <p className="text-sm text-gray-500">Number of client reviews</p>
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="industriesCount" className="text-sm font-medium">Industries Count</label>
-              <input
-                id="industriesCount"
-                type="number"
-                min="0"
-                value={industriesCount}
-                onChange={(e) => setIndustriesCount(Number(e.target.value))}
-                placeholder="0"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <p className="text-sm text-gray-500">Number of industries served</p>
-            </div>
-          </div>
+          {/* ...removed stats fields UI */}
 
           {/* Industry Category */}
           {/* <div className="space-y-2">
