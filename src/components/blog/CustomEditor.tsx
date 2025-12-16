@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from 'react';
 
-interface QuillEditorProps {
+interface CustomEditorProps {
   value: string;
   onChange: (value: string) => void;
 }
 
-export default function QuillEditor({ value, onChange }: QuillEditorProps) {
+export default function CustomEditor({ value, onChange }: CustomEditorProps) {
   const [isClient, setIsClient] = useState(false);
   const [EditorComponent, setEditorComponent] = useState<any>(null);
 
